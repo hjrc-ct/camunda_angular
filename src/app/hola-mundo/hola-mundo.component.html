@@ -1,0 +1,36 @@
+<span>{{titulo}}</span>
+<br> 
+<br> 
+<div class="card">
+<div class="card-body">
+      
+      <br> 
+      <form formGroup="formularioContacto" ng-submit="onSubmit()">
+        <div class="mb-2">
+         <label class="form-label">
+            Nombre
+        </label>
+        <input type="text" formControlName="formularioContacto.nombre" class="form-control"   placeholder="Ingrese nombre" required>
+        </div>
+        <div class="mb-2">
+          <label class="form-label">
+            Edad
+        </label>
+        
+        <input type="text" formControlName="edad" class="form-control" placeholder="Ingrese edad" required>
+        </div>
+        <div class="mb-2">
+        <label class="form-label">
+            Email
+        </label>
+        <input type="email" formControlName="email" class="form-control" placeholder="Ingrese email" required>
+       </div>
+       <button class="btn btn-primary">Enviar</button>
+          
+       
+     </form>       
+     </div>
+      {{formularioContacto.value.nombre}}
+     </div>
+     <br> 
+     
