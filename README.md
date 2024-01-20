@@ -34,5 +34,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 The angular application has 2 pages or forms devoloping
 
-![image](https://github.com/roger551983/camunda_angular/assets/52264667/f105b477-1386-4cd9-a577-d886e3ec9d48)
+Evento Inicio 
+
+![image](https://github.com/roger551983/camunda_angular/assets/52264667/4bd63818-b161-4afa-8a31-a232fb29cda2)
+
+Registrar Pedido 
+
+![image](https://github.com/roger551983/camunda_angular/assets/52264667/e9afe6e8-8fe2-4115-8366-13c36b1c2610)
+
 
