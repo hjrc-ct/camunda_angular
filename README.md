@@ -33,3 +33,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 >>>>>>> 69daaab (Version 01)
 
 The angular application has 2 pages or forms devoloping
+
+![image](https://github.com/roger551983/camunda_angular/assets/52264667/f105b477-1386-4cd9-a577-d886e3ec9d48)
+
