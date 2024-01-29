@@ -38,7 +38,8 @@ The angular application has 2 pages or forms devoloping
 
 Evento Inicio 
 
-![image](https://github.com/roger551983/camunda_angular/assets/52264667/4bd63818-b161-4afa-8a31-a232fb29cda2)
+![image](https://github.com/roger551983/camunda_angular/assets/52264667/7f5e36a3-f8df-416c-909a-c3ecf43aea0c)
+
 
 Registrar Pedido 
 
