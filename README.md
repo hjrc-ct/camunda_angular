@@ -41,9 +41,14 @@ Evento Inicio
 ![image](https://github.com/roger551983/camunda_angular/assets/52264667/7f5e36a3-f8df-416c-909a-c3ecf43aea0c)
 
 
-Registrar Pedido 
+Registrar Solicitud
 
-![image](https://github.com/roger551983/camunda_angular/assets/52264667/e9afe6e8-8fe2-4115-8366-13c36b1c2610)
+![image](https://github.com/roger551983/camunda_angular/assets/52264667/70c3e0df-5d66-4b4c-ac5c-95c413481509)
+
+RevisarSolicitud  
+![image](https://github.com/roger551983/camunda_angular/assets/52264667/a2ccb892-fba3-4814-9c3b-ae6f738a1984)
+
+
 
 >>>>>>> 6e0ab6ac56ea8e9689f058af10b6fe6d30ee4c9e
 
