@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './tarea-usuario.component.css'
 })
 export class TareaUsuarioComponent {
-  titulo="Registro Pedido"
+  titulo="Registro Solicitud"
 }

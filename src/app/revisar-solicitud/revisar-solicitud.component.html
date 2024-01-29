@@ -1,0 +1,73 @@
+<span>{{titulo}}</span>
+
+<br>  
+<br>
+
+<label class="form-label" >Tipo Solicitud:</label>
+&nbsp;
+&nbsp;
+<span>Requerimiento</span>
+&nbsp;
+&nbsp;
+<label class="form-label">Tipo Motivo:</label>
+&nbsp;
+&nbsp;
+<span>Nuevo</span>
+&nbsp;
+&nbsp;
+<label class="form-label">Fecha:</label>
+&nbsp;
+&nbsp;
+<span>29/01/2024</span>
+<br> 
+
+
+<form formGroup="formularioRevisarSolicitud" >
+    <span>Informacion General</span>
+    <br>
+    <div class="card">
+    <div class="card-body">
+
+    <div class="mb-2">
+        <label class="form-label">Codigo </label>
+        <input type="text" formControlName="codigo_solicitud" class="form-control"  disabled>
+        <label class="form-label">Descripcion Solicitud </label> 
+        <input type="text" formControlName="descripcion_solicitud" class="form-control"  disabled>
+        <label class="form-label">Importe</label>
+        <input type="text" formControlName="importe_solicitud" class="form-control"  disabled>
+        <label class="form-label">Comentarios</label>
+        <input type="text" formControlName="comentarios_solicitud" class="form-control"  disabled>
+    </div>
+
+</div>
+</div>
+ <br> 
+  <span>Revision Solicitud</span>
+  <br>
+  
+  <div class="card">
+  <div class="card-body">
+    <span>Solicitud Aprobada?</span>
+    <br> 
+    <br> 
+    <div class="mb-2">
+        <input type="radio" class="radiobox" name="opcion_si">
+        <span> SI</span>
+        &nbsp;
+        <input type="radio" class="radiobox" name="opcion_no">
+        
+        <span> NO</span>
+        <br>
+        <label class="form-label">Observaciones</label>
+        <textarea name="text_comentarios" cols="80" rows="10">
+        </textarea>
+  </div>
+   
+  </div>
+  </div> 
+    <br> 
+    <button class="btn btn-primary">Grabar</button>
+    &nbsp;
+    <button class="btn btn-primary">Cancelar</button>
+
+</form>
