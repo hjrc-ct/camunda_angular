@@ -16,4 +16,8 @@ export class HolaMundoComponent {
     email:new FormControl('') 
 
     });
+
+    onCreate(){
+      console.log('Hola Mundo - form submitted !');
+    }
   }
