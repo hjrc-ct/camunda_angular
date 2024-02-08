@@ -1,0 +1,32 @@
+<div class="ui grid">
+  <div class="sixteen wide column">
+    <ul class="processDefinitions" *ngFor="let processDefinition of processDefinitions">
+      <li *ngIf="processDefinition.key === 'process_modelo'">
+            <p>
+              Process key: <mark>{{processDefinition.key}}</mark> 
+              <br/>
+              Name: <i>{{processDefinition.name}}</i>
+              <br/><br/>
+              <a class="btn btn-primary" routerLink="/EventoInicio/{{processDefinition.key}}">Start New Instance</a>
+              <br/><br/>
+            </p>
+      </li>
+    </ul>
+
+    <div class="small">
+      <p>
+      <b>Note:</b>
+      <br/>
+      If you see empty page here, perhaps check below conditions. 
+      <br/>
+      <b>(a)</b> Check configuration in <code>src/environments/environment.ts</code>.
+      <br/>
+      <b>(b)</b> Camunda engine <code>{{this.getCamundaURL()}}</code> is up and running.
+      <br/>
+      <b>(c)</b> Angular ui app is able to access Camunda engine at run-time.
+      <br/>
+      <b>(d)</b> Latest version of BPMN <code>process_modelo</code> is deployed to the Camunda engine.
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+  <div class="card">
+    <div class="card-body">
+
+    <div [hidden]="submitted">
+      <h1>{{this.titulo}}</h1>
+      <form  (submit)="onSubmit()" 
+              #startNewProcess="ngForm"
+            class="ui form">
+
+        <div class="mb-2">
+          
+                  <div class="field">
+                      <label class="form-label" for="tipo_solicitud">Tipo Solicitud</label>
+                      <br/>
+                      <select  class="form-control" id="tipo_solicitud"  name="tipo_solicitud"  required
+                              [(ngModel)]="model.tipo_solicitud" >
+                        <option>Requerimiento</option>
+                        <option>Cumplimiento</option>
+                    </select> 
+                  </div>
+                  <br>   
+
+                  <div class="field">
+                      <label class="form-label" for="tipo_motivo">Tipo Motivo</label>
+                      <br/>
+                      <select class="form-control" id="tipo_motivo"  name="tipo_motivo" required
+                              [(ngModel)]="model.tipo_motivo">  
+                        <option>Nuevo</option>
+                        <option>Reemplazo</option>
+                    </select>
+                  </div>
+                    <br> 
+
+                  <div class="field">
+                      <label class="form-label" for="tipo_cumplimiento">Tipo Cumplimiento</label>  
+                      <br/>
+                      <select class="form-control" id="tipo_cumplimiento" name="tipo_cumplimiento" required
+                              [(ngModel)]="model.tipo_cumplimiento">    
+                        <option>Nuevo Puesto</option>
+                        <option>Reasignacion de puesto</option>
+                    </select>        
+                  </div>   
+                  <br/>
+
+                  <div class="field">
+                    <button type="submit" class="btn btn-primary" [disabled]="!startNewProcess.form.valid">Crear</button>
+                  </div>
+        </div>
+      </form>
+    </div>
+    <div [hidden]="!submitted">
+      <p>Process has been started.
+        <br/>
+        <code>{{this.getCreatedId()}}</code>
+      </p>
+    </div>
+    <br/>
+    Return to <a href="/">home page</a>.    
+  </div>
+</div>

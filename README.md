@@ -52,3 +52,46 @@ RevisarSolicitud
 
 >>>>>>> 6e0ab6ac56ea8e9689f058af10b6fe6d30ee4c9e
 
+## Development environment
+
+
+`$ nvm version`
+> v18.15.0
+
+
+`$ npm version`
+> 
+````
+{
+  'angular-inicio': '0.0.1',
+  npm: '9.5.0',
+  node: '18.15.0',
+  v8: '10.2.154.26-node.25',
+  uv: '1.44.2',
+  zlib: '1.2.13',
+  brotli: '1.0.9',
+  ares: '1.18.1',
+  modules: '108',
+  nghttp2: '1.51.0',
+  napi: '8',
+  llhttp: '6.0.10',
+  uvwasi: '0.0.15',
+  acorn: '8.8.2',
+  simdutf: '3.1.0',
+  undici: '5.20.0',
+  openssl: '3.0.8+quic',
+  cldr: '42.0',
+  icu: '72.1',
+  tz: '2022g',
+  unicode: '15.0',
+  ngtcp2: '0.8.1',
+  nghttp3: '0.7.0'
+}
+````
+
+
+`$ uname -v`
+> 
+````
+Darwin Kernel Version 22.6.0: Tue Nov  7 21:48:06 PST 2023; root:xnu-8796.141.3.702.9~2/RELEASE_X86_64
+````

@@ -1,0 +1,15 @@
+.small {
+    
+    -webkit-text-size-adjust: none;
+    font-size: 12px;
+    border-radius: 10px;
+    box-sizing:content-box;
+    border-color: red;
+    border-width: 1px;
+    background-color: aliceblue;
+    padding: 18px;
+    margin: 8px;
+    border-inline-start-width: 5px;
+    max-width: 580px;
+
+}
