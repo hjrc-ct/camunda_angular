@@ -119,9 +119,6 @@ export class CamundaRestService {
 
       // Let propagate the error, so ui can render to the user
       return of(error as T);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
     };
   }
 
