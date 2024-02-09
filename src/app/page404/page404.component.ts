@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-page404',
@@ -8,5 +10,15 @@ import { Component } from '@angular/core';
   styleUrl: './page404.component.css'
 })
 export class Page404Component {
-   mensaje="Pagina no encontrada"
+   mensaje : string | null ="404: Pagina no encontrada"
+
+   constructor(route: ActivatedRoute ) {
+
+      route.queryParamMap.subscribe ( (qParams: { get: (arg0: string) => string | null; } | null) => { 
+        if ( null !== qParams && null !== qParams.get('message') ) {
+              this.mensaje = qParams.get('message');
+        }
+
+      })      
+  }
 }
