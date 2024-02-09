@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CamundaRestService } from '../camunda-rest.service'
 import { ProcessDefinition } from '../schemas/ProcessDefinition';
+import { environment } from '../../environments/environment';
 
 import { HttpClientModule }    from '@angular/common/http';
 
@@ -12,6 +13,9 @@ import { HttpClientModule }    from '@angular/common/http';
 })
 export class ProcesslistComponent implements OnInit {
   public processDefinitions: ProcessDefinition[] = new Array<ProcessDefinition>(); ;
+
+  taskType_Registrar : string = 'Registrar'; // actual bpmn task id is given in environment file
+  taskType_Revisar   : string = 'Revisar';   // actual bpmn task id is given in environment file
 
   constructor(private camundaRestService: CamundaRestService) { }
 

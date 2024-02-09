@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';  // rxjs/Observable
 import { of } from 'rxjs';          // rxjs/Observable/of
 import { catchError, map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { ProcessDefinition } from './schemas/ProcessDefinition';
 import { Task } from './schemas/Task';
 import { environment } from '../environments/environment';
@@ -27,6 +27,28 @@ export class CamundaRestService {
     );
   }
 
+  getTasksOfType(type : String): Observable<Task[]> {
+    const endpoint = `${this.engineRestUrl}task?sortBy=created&sortOrder=desc&maxResults=50&taskDefinitionKey=` + type;
+    return this.http.get<any>(endpoint).pipe(
+      tap(form => this.log(`fetched tasks of type`)),
+      catchError(this.handleError('getTasksOfType', []))
+    );
+  }
+  
+  // custom work - input has two params
+  // task name from the BPMN process def
+  // process instance id 
+  getTask(type : String, processInstanceId : String): Observable<Task[]> {
+    const endpoint = `${this.engineRestUrl}task?sortBy=created&sortOrder=desc&maxResults=1`
+                      + `&processInstanceId=` + processInstanceId
+                      + `&taskDefinitionKey=` + type;
+
+    return this.http.get<any>(endpoint).pipe(
+      tap(form => this.log(`fetched tasks of type`)),
+      catchError(this.handleError('getTask', []))
+    );
+  }  
+
   getTaskFormKey(taskId: String): Observable<any> {
     const endpoint = `${this.engineRestUrl}task/${taskId}/form`;
     return this.http.get<any>(endpoint).pipe(
@@ -36,15 +58,18 @@ export class CamundaRestService {
   }
 
   getVariablesForTask(taskId: String, variableNames: String): Observable<any> {
-    const endpoint = `${this.engineRestUrl}task/${taskId}/form-variables?variableNames=${variableNames}`;
+    const endpoint = `${this.engineRestUrl}task/${taskId}/form-variables?variables=${variableNames}`;
+    
     return this.http.get<any>(endpoint).pipe(
-      tap(form => this.log(`fetched variables`)),
+      tap(form => {this.log(`fetched variables`,); this.log(form);} ),
       catchError(this.handleError('getVariablesForTask', []))
     );
   }
 
   postCompleteTask(taskId: String, variables: Object): Observable<any> {
     const endpoint = `${this.engineRestUrl}task/${taskId}/complete`;
+    console.log(taskId);
+    console.log(variables);
     return this.http.post<any>(endpoint, variables).pipe(
       tap(tasks => this.log(`posted complete task`)),
       catchError(this.handleError('postCompleteTask', []))
@@ -92,6 +117,9 @@ export class CamundaRestService {
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
 
+      // Let propagate the error, so ui can render to the user
+      return of(error as T);
+
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
@@ -103,4 +131,6 @@ export class CamundaRestService {
   }
 
   public getURL() : String { return this.engineRestUrl; }
+
+    
 }

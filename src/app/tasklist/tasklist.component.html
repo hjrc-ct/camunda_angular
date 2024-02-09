@@ -1,0 +1,31 @@
+<div class="ui-tasklist">
+  <h5>Tasks present in the system</h5>
+  <div class="t-tasklist" >
+    <table class="tasklist">
+        <tr>
+          <th>Sequence</th>
+          <th>Name</th>
+          <th>Priority</th>
+          <th>Created</th>
+        </tr>        
+      <tbody  *ngFor="let task of tasks; let i = index;">    
+          <tr>
+            <td>{{(1+i)}}</td>
+            <td><a href="/tasklist/{{this.taskType}}/{{task.id}}?date={{task.created}}">{{task.name}}</a></td>
+            <td>{{task.priority}}</td>
+            <td>
+              <code>
+              {{task.created | dateAgo}}
+              </code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="small">
+    Note: Limited to a sub-set of records in descending order. You may not see full list, if there is backlog in the system.
+  </div>
+  <br/>
+  Return to <a href="/">home page</a>.    
+</div>

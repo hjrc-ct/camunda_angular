@@ -1,12 +1,11 @@
 export class Task {
-  // id: string;
-  // name: string;
-  // key: string;
-
 
   constructor(
     public id: string,
     public name: string,
-    public key: string
+    public key: string,
+    public priority :  number,
+    public taskDefinitionKey: string,
+    public created  :  Date
   )  {}  
 }
