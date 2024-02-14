@@ -10,9 +10,9 @@ export class RegistrarData {
     // description
     public description       : string = '',
     // amount
-    public importe           : number,
+    public importe           : number = 0,
     // Observations / notes
-    public observations       : String
+    public observations       : String = new String()
   ) {  }
 
 }
