@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CamundaRestService } from '../../camunda-rest.service';
 import { StartProcessInstanceComponent } from '../general/start-process-instance.component'
 import { MyProcessData } from '../../schemas/MyProcessData';
@@ -21,11 +21,12 @@ export class startNewProcessComponent
   public titulo="Ingreso de datos"; 
   override  submitted:boolean = false;
   override  model = new MyProcessData('','','');
-
     
-  constructor(route: ActivatedRoute,
-    camundaRestService: CamundaRestService,) {
-    super(route, camundaRestService);
+  constructor(
+    camundaRestService: CamundaRestService, 
+    route: ActivatedRoute,
+    router : Router) {
+    super(camundaRestService, route, router);
   }
 
 }

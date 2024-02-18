@@ -28,10 +28,6 @@
       <bpmn:incoming>Flow_0rwr19o</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0rwr19o" sourceRef="Activity_11wa8y8" targetRef="Event_1wm66tt" />
-    <bpmn:userTask id="Activity_076qul8" name="Verificar Solicitud Aprobada">
-      <bpmn:incoming>Flow_1npnfzh</bpmn:incoming>
-      <bpmn:outgoing>Flow_12d8d5y</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:userTask id="Activity_0wf5xb7" name="Revisar Solicitud">
       <bpmn:incoming>Flow_1ae4iuy</bpmn:incoming>
       <bpmn:outgoing>Flow_1fm2dae</bpmn:outgoing>
@@ -40,17 +36,19 @@
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="MailTo">raghu@makelabs.in</camunda:inputParameter>
-            <camunda:inputParameter name="MailSubject">Verificar Solicitud Rechazada</camunda:inputParameter>
-            <camunda:inputParameter name="MailText">
+            <camunda:inputParameter name="to">raghu@makelabs.in</camunda:inputParameter>
+            <camunda:inputParameter name="subject">Verificar Solicitud Rechazada</camunda:inputParameter>
+            <camunda:inputParameter name="text">
               <camunda:script scriptFormat="freemarker">Dear User,
 
 Below is an update on the request submitted in the system.
 
 Status: [${reviewAction}]
 
+Comments: [${reviewObservations}]
 
-Note: This is an automated email.</camunda:script>
+
+Note: This is a system generated email.</camunda:script>
             </camunda:inputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>mail-send</camunda:connectorId>
@@ -58,6 +56,32 @@ Note: This is an automated email.</camunda:script>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0fnuzqd</bpmn:incoming>
       <bpmn:outgoing>Flow_0rwr19o</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sendTask id="Activity_076qul8" name="Verificar Solicitud Aprobada">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="to">raghu@makelabs.in</camunda:inputParameter>
+            <camunda:inputParameter name="subject">Verificar Solicitud Aprobada</camunda:inputParameter>
+            <camunda:inputParameter name="text">
+              <camunda:script scriptFormat="freemarker">Dear User,
+
+Below is an update on the request submitted in the system.
+
+Status: [${reviewAction}]
+
+Comments: [${reviewObservations}]
+
+
+Note: This is a system generated email.</camunda:script>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>mail-send</camunda:connectorId>
+
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1npnfzh</bpmn:incoming>
+      <bpmn:outgoing>Flow_12d8d5y</bpmn:outgoing>
     </bpmn:sendTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -82,7 +106,7 @@ Note: This is an automated email.</camunda:script>
         <di:waypoint x="635" y="140" />
         <di:waypoint x="700" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="663" y="122" width="9" height="14" />
+          <dc:Bounds x="664" y="122" width="8" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1fm2dae_di" bpmnElement="Flow_1fm2dae">
@@ -125,14 +149,14 @@ Note: This is an automated email.</camunda:script>
           <dc:Bounds x="862" y="275" width="56" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_014vi3n_di" bpmnElement="Activity_076qul8">
-        <dc:Bounds x="700" y="100" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_093eghe_di" bpmnElement="Activity_0wf5xb7">
         <dc:Bounds x="420" y="100" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_07fzgsf_di" bpmnElement="Activity_11wa8y8">
         <dc:Bounds x="700" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0klfaco_di" bpmnElement="Activity_076qul8">
+        <dc:Bounds x="700" y="100" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

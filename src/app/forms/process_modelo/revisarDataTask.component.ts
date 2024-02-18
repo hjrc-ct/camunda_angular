@@ -23,6 +23,7 @@ export class revisarDataTaskComponent extends CompleteTaskComponent {
   override model     : RevisarData = new RevisarData('no', 'optional');
 
   public titulo : string = 'Formulario De Revision';
+  public status : string = 'none';
 
   // Base model refers to the input at the beginning of BPMN
   // that is, Start Event
@@ -43,6 +44,7 @@ export class revisarDataTaskComponent extends CompleteTaskComponent {
 
     this.modelBase          = new MyProcessData();
     this.modelRegistrarData = new RegistrarData();
+    this.status             = 'none';
 
     this.route.queryParamMap.subscribe ( qParams => { 
       if (  null !== qParams?.get('date') ) {
@@ -131,6 +133,8 @@ export class revisarDataTaskComponent extends CompleteTaskComponent {
 
   onSubmit() {
 
+    this.status = 'running';
+
     if (this.taskId === null){
         //handle this as an error
         this.errorMessage = 'Task id is empty. Cannot initiate task complete.';
@@ -140,8 +144,15 @@ export class revisarDataTaskComponent extends CompleteTaskComponent {
 
     const variables = this.generateVariablesFromFormFields();
     // basis of completeing the task using the unique id
-    this.camundaRestService.postCompleteTask(this.taskId, variables).subscribe();
     this.submitted = true;
+    this.camundaRestService
+        .postCompleteTask(this.taskId, variables)
+        .subscribe( (result) => {
+          this.status = 'none';
+          this.lookForError( result );          
+          
+        });
+    
   }
 
   onCancel() {
@@ -152,13 +163,13 @@ export class revisarDataTaskComponent extends CompleteTaskComponent {
   override generateVariablesFromFormFields() {
     const variables = {
       "variables" :  {
-          "reviewAction"  : { value : 'no'  } ,
-          "observations"  : { value : new String('') } ,
+          "reviewAction"        : { value : 'no'  } ,
+          "reviewObservations"  : { value : new String('') } ,
       }
     };
 
-    variables.variables["reviewAction"].value = this.model.reviewAction;
-    variables.variables["observations"].value = this.model.observations;
+    variables.variables["reviewAction"].value       = this.model.reviewAction;
+    variables.variables["reviewObservations"].value = this.model.reviewObservations;
 
     return variables;
   }  

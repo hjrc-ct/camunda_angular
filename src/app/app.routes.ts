@@ -26,7 +26,7 @@ export const routes: Routes = [
  { path: 'tasklist/:taskType',                  component:TasklistComponent          },
  { path: 'tasklist/Registrar/:id',              component:registrarDataTaskComponent },
  { path: 'tasklist/Revisar/:id',                component:revisarDataTaskComponent   },
- { path: 'error/:message',                      component: errorComponent            },
+ { path: 'error',                               component: errorComponent            },
  { path: "**",                                  component: Page404Component          }
 ];
 

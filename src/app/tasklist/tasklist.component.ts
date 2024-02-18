@@ -14,16 +14,21 @@ import { environment } from '../../environments/environment';
   providers: [ CamundaRestService, HttpClientModule]
 })
 export class TasklistComponent implements OnInit {
-  tasks: Task[]   = new Array<Task>(); ;
+  errorMessage : string | null
+  tasks: Task[]   = new Array<Task>();
   public taskId: string  = '';
   public formKey: string = '';
   public taskType : string = '';
 
   constructor(
     private camundaRestService: CamundaRestService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
 
       console.log('app-tasklist - route - ', route);
+
+      this.router = router;
+      this.errorMessage = null;
 
   }
 
@@ -61,7 +66,11 @@ export class TasklistComponent implements OnInit {
   getTasksOfType(type: any): void {
     this.camundaRestService
       .getTasksOfType( this.getType(type) )
-      .subscribe(tasks => this.tasks = tasks);
+      .subscribe(tasks => {
+        
+          this.lookForError( tasks );    
+          this.tasks = tasks 
+      });
   }
 
   // read from environment configuration the actual bpmn task "id"
@@ -73,6 +82,22 @@ export class TasklistComponent implements OnInit {
               return  environment.taskType_Revisar;
     else 
           return 'unknown';
+  }
+
+  // Handle any errors that may be present.
+  lookForError( result : any ) : void {
+    if ( result.error !== undefined && result.error !== null ){
+      
+      // error while loading tasklist. handle it by redirecting to error page
+      this.errorMessage = result.message 
+                            ? ( result.name + " " + result.message ) 
+                            : result.error.message;
+      console.log('routing to app error page ', this.errorMessage);
+      this.router.navigate( 
+                            [ 'error'  ], 
+                            { queryParams: { message: this.errorMessage } }  
+                          );
+    }
   }
 
 }
