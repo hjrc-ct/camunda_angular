@@ -9,7 +9,7 @@ export class RevisarData {
     public reviewAction       : string = '',
 
     // Observations / notes
-    public observations       : String
+    public reviewObservations       : String
   ) {  }
 
 }

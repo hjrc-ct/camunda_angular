@@ -85,27 +85,27 @@
                       &nbsp;&nbsp;&nbsp;&nbsp;
                       <input  type="radio"  name="reviewAction"  
                               id="reviewAction"  value="reject" 
-                              [required]="true" (checked)="false"
+                              [required]="true" (checked)="true"
                               [(ngModel)]="model.reviewAction" />
                       <label for="reject">&nbsp;No</label>
                   </div>
                   <br/>                  
 
                   <div class="field">
-                      <label class="form-label" for="observations">Observations</label>  
+                      <label class="form-label" for="reviewObservations">Observations</label>  
                       <br/>
                       <textarea data-limit-rows="true" cols="60" rows="4"
-                              id="observations" name="observations" 
+                              id="reviewObservations" name="reviewObservations" 
                               placeholder="optional text"
                               class="form-control"
                               [required]="false"
-                              [(ngModel)]="model.observations" >
+                              [(ngModel)]="model.reviewObservations" >
                       </textarea>
                   </div>   
                   <br/>
 
                   <div class="field">
-                    <button type="submit" class="btn btn-primary"  aria-describedby="Mark as complete" [disabled]="!revisarDataTask.form.valid">Grabar</button>
+                    <button type="submit" class="btn btn-primary"  aria-describedby="Mark as complete" [disabled]="(status === 'running') || (!revisarDataTask.form.valid)">Grabar</button>
                     &nbsp;&nbsp;
                     <button type="button" (click)="onCancel()" class="btn btn-secondary" aria-describedby="Task cancelled in the system" >Cancelar</button>
                   </div>

@@ -13,21 +13,12 @@ import { Component, OnInit } from '@angular/core';
   })
 export class errorComponent implements OnInit {
     route : any;
-    public message : string | null = 'Unknown application error'; // default message
+    public message : any | null = 'Unknown application error'; // default message
 
   constructor(
     route: ActivatedRoute,
     router: Router ) {
       this.route = route;
-      console.log('lets parse error message');
-      this.route.params.subscribe ( (params : Params) => { 
-        if ( params['message'] ) {
-              this.message = params['message'];
-        }else {
-          console.log('oops! cant find the error message');
-          this.message = 'oops! cant find the error message';
-        }
-      })      
   }
 
 
@@ -36,9 +27,13 @@ export class errorComponent implements OnInit {
     this.route.params.subscribe ( (params : Params) => { 
       if ( params['message'] ) {
             this.message = params['message'];
-      }else {
-        console.log('oops! cant find the error message');
-        this.message = 'oops! cant find the error message';
+      }
+    })
+
+
+    this.route.queryParamMap.subscribe ( (qParams: { get: (arg0: string) => string | null; }) => {
+      if (  null !== qParams?.get('message') ) {
+            this.message = qParams.get('message');
       }
     })    
   }

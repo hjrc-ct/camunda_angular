@@ -1,21 +1,28 @@
 import { CamundaRestService } from '../../camunda-rest.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MyProcessData } from '../../schemas/MyProcessData';
 import { ProcessInstanceData } from '../../schemas/ProcessInstanceData';
+import { Component } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 
 export class StartProcessInstanceComponent {
   model!: MyProcessData;
   instanceCreated! : ProcessInstanceData;
   submitted: boolean = false
-  route: ActivatedRoute
-  camundaRestService: CamundaRestService
+  errorMessage : string | null
 
-  constructor(route: ActivatedRoute,
-    camundaRestService: CamundaRestService
+  constructor(
+    private camundaRestService: CamundaRestService,
+    private route: ActivatedRoute,
+    private router: Router
     ) {
       this.route = route;
       this.camundaRestService = camundaRestService;
+      this.errorMessage = null;
+      this.router = router;
   }
+
   onSubmit() {
     console.log('Submit New Process with input data...');
     this.route.params.subscribe(params => {
@@ -24,6 +31,9 @@ export class StartProcessInstanceComponent {
       console.log(variables);
       this.camundaRestService.postProcessInstance(processDefinitionKey, variables)
           .subscribe( instanceOutput => { 
+
+            this.lookForError(instanceOutput);
+
             console.log(instanceOutput); 
             this.instanceCreated = new ProcessInstanceData(
               instanceOutput.businessKey,
@@ -35,6 +45,20 @@ export class StartProcessInstanceComponent {
       
       this.submitted = true;
     });
+  }
+
+  // Handle any errors that may be present.
+  lookForError( result : any ) : void {
+    if ( result.error !== undefined && result.error !== null ){
+      
+      // error while loading tasklist. handle it by redirecting to error page
+      this.errorMessage = result.message 
+                            ? ( result.name + " " + result.message ) 
+                            : result.error.message;
+      console.log('routing to app error page ', this.errorMessage);
+      // TODO - handle error
+      this.router.navigate( [ 'error'  ], { queryParams: { message: this.errorMessage } }  );
+    }
   }
 
   getCreatedId() : string { 
